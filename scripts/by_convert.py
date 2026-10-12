@@ -14,6 +14,8 @@ RU = dict(zip("абвгдеёжзийклмнопрстуфхцчшщъыьэю�
                "u", "f", "kh", "ts", "ch", "sh", "shch", "", "y", "", "e", "yu", "ya", "i", "u"]))
 MONTHS = {m: i + 1 for i, m in enumerate(["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа",
                                           "сентября", "октября", "ноября", "декабря"])}
+MONTHS.update({m: i + 1 for i, m in enumerate(["студзеня", "лютага", "сакавіка", "красавіка", "мая", "чэрвеня",
+                                               "ліпеня", "жніўня", "верасня", "кастрычніка", "лістапада", "снежня"])})
 HEAD_CLASSES = {"part": "part", "zagrazdel": "section", "razdel": "section", "podrazdel": "subsection",
                 "chapter": "chapter", "paragraph": "paragraph"}
 ORDER = ["part", "section", "subsection", "chapter", "paragraph"]
@@ -65,7 +67,7 @@ def table_html(tb):
 
 
 def ru_date(s):
-    m = re.search(r"(\d{1,2})\s+([а-я]+)\s+(\d{4})", s or "")
+    m = re.search(r"(\d{1,2})\s+([а-яіў]+)\s+(\d{4})", s or "")
     if m and m.group(2) in MONTHS:
         return f"{m.group(3)}-{MONTHS[m.group(2)]:02d}-{int(m.group(1)):02d}"
     return None
@@ -185,7 +187,7 @@ def main():
         fm = ["---", f"title: {yq(title)}",
               f"identifier: {yq(num.get_text(' ', strip=True).replace(chr(160), ' ') if num else '')}",
               f"regnum: {yq(rn.upper())}", f"type: {typ}", "jurisdiction: by",
-              f"language: {'be' if re.search(r'Рэспублі|Кодэкс|Закон Рэспублікі', title) else 'ru'}"]
+              f"language: {'be' if re.search(r'Рэспублі|Кодэкс|РЭСПУБЛІКІ', title + uc.get_text(' ')[:300]) else 'ru'}"]
         if date:
             fm.append(f"date: {date}")
         if chdates:

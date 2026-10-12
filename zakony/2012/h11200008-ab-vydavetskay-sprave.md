@@ -4,7 +4,8 @@ identifier: "№ 8-З"
 regnum: "H11200008"
 type: act
 jurisdiction: by
-language: ru
+language: be
+date: 2012-12-29
 last_amended: 2025-12-30  # date of the latest amending act listed
 status: in_force
 source: "https://etalonline.by/document/?regnum=h11200008"

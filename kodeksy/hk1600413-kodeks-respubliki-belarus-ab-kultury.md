@@ -5,6 +5,7 @@ regnum: "HK1600413"
 type: code
 jurisdiction: by
 language: be
+date: 2016-07-20
 last_amended: 2026-04-15  # date of the latest amending act listed
 status: in_force
 source: "https://etalonline.by/document/?regnum=hk1600413"
